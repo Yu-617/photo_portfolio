@@ -1,0 +1,14 @@
+# Hugoが自動生成する公開用フォルダ（GitHub Actionsで生成するのでPush不要）
+/public/
+/resources/
+
+# 実行時に生成されるキャッシュや一時ファイル
+/assets/jsconfig.json
+/.hugo_build.lock
+
+# OS固有のゴミファイル
+.DS_Store
+Thumbs.db
+
+# ローカル環境特有の設定がある場合
+.env
