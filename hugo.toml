@@ -4,3 +4,5 @@ title = 'Photo Portfolio'
 theme = "hugo-theme-gallery"
 [params]
   defaultTheme = "light"
+[params.socialIcons]
+  github = "https://github.com/Yu-617/photo_portfolio"
