@@ -1,0 +1,30 @@
+/* メインページの文章を中央揃えにする */
+.home-intro-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* 横方向の中央揃え */
+  text-align: center;  /* テキストの中央揃え */
+  margin: 0 auto 3rem;
+  max-width: 800px;    /* 読みやすい幅に制限 */
+}
+
+/* prose内の各要素も中央に寄せる */
+.home-intro-container .prose {
+  width: 100%;
+}
+
+.home-intro-container .prose h1,
+.home-intro-container .prose h2,
+.home-intro-container .prose h3,
+.home-intro-container .prose p,
+.home-intro-container .prose ul {
+  display: inline-block; /* 中央揃えを効かせるため */
+  text-align: center;
+  width: 100%;
+}
+
+/* リスト（箇条書き）だけは左寄せで見やすくしたい場合 */
+.home-intro-container .prose ul {
+  text-align: left;
+  display: inline-table; /* 中央に配置しつつ中身は左寄せ */
+}
