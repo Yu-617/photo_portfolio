@@ -1,6 +1,5 @@
 ---
-title: "Film Camera"
+title: "Film"
 layout: "gallery"
-description: "フィルムカメラ"
+description: ""
 ---
-Kodak
