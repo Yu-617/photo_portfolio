@@ -1,0 +1,13 @@
+{{ define "main" }}
+  {{ partial "title.html" . }}
+  {{ partial "categories.html" . }}
+  {{ partial "featured.html" . }}
+
+  <section class="galleries">
+    {{/* content/gallery 以下のページを列挙（非公開フラグを考慮） */}}
+    {{ $galleries := where site.RegularPages "Section" "gallery" }}
+    {{ range where $galleries "Params.private" "ne" true }}
+      {{ partial "album-card.html" . }}
+    {{ end }}
+  </section>
+{{ end }}
