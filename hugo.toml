@@ -2,3 +2,5 @@ baseURL = 'https://example.org/'
 languageCode = 'ja-jp'
 title = 'Photo Portfolio'
 theme = "hugo-theme-gallery"
+[params]
+  defaultTheme = "light"
