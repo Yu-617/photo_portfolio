@@ -1,13 +1,19 @@
 {{ define "main" }}
-  <div class="home-content" style="text-align: center; margin-bottom: 2rem;">
-    {{/* content/_index.md の本文を表示 */}}
-    {{ .Content }}
-  </div>
+  {{/* 1. タイトルとMarkdown本文を表示 */}}
+  <article class="prose" style="margin-bottom: 3rem;">
+    {{ partial "title.html" . }}
+    <div class="entry-content">
+      {{ .Content }}
+    </div>
+  </article>
 
+  {{/* 2. 注目アルバム (featured: true) を表示 */}}
+  {{ partial "featured.html" . }}
+
+  {{/* 3. アルバム一覧を表示 (注目アルバムを除外) */}}
   <section class="galleries">
-    {{/* gallery 以下のアルバムを表示 */}}
     {{ $galleries := where site.RegularPages "Section" "gallery" }}
-    {{ range where $galleries "Params.private" "ne" true }}
+    {{ range where $galleries "Params.featured" "!=" true }}
       {{ partial "album-card.html" . }}
     {{ end }}
   </section>
