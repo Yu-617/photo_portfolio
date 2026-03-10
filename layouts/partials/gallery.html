@@ -195,7 +195,26 @@
         {{ if ne $lens "" }}{{ $lines = $lines | append $lens }}{{ end }}
         {{/* normalize exposure pieces */}}
         {{ $expParts := slice }}
-        {{ if ne $f "" }}{{ $expParts = $expParts | append (printf "f/%v" $f) }}{{ end }}
+        {{/* Normalize FNumber: convert rational like "14/5" -> 2.8 for display */}}
+        {{ $fval := $f }}
+        {{ if and (ne $f "") (in $f "/") }}
+          {{ $fp := split $f "/" }}
+          {{ if ge (len $fp) 2 }}
+            {{ $num := float (index $fp 0) }}
+            {{ $den := float (index $fp 1) }}
+            {{ if and (ne $den 0) (ne $num 0) }}
+              {{ $q := div $num $den }}
+              {{/* format with one decimal place, then drop trailing .0 for integers */}}
+              {{ $fmt := printf "%.1f" $q }}
+              {{ if hasSuffix $fmt ".0" }}
+                {{ $fval = replaceRE "\\.0$" "" $fmt }}
+              {{ else }}
+                {{ $fval = $fmt }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ if ne $fval "" }}{{ $expParts = $expParts | append (printf "f/%v" $fval) }}{{ end }}
         {{ if ne $ss "" }}{{ $sh := $ss }}{{ if and (in $sh "/") (not (hasSuffix $sh "s")) }}{{ $sh = printf "%ss" $sh }}{{ end }}{{ $expParts = $expParts | append $sh }}{{ end }}
         {{ if ne $iso "" }}{{ $expParts = $expParts | append (printf "ISO %v" $iso) }}{{ end }}
         {{ if gt (len $expParts) 0 }}{{ $lines = $lines | append (delimit $expParts ", ") }}{{ end }}
