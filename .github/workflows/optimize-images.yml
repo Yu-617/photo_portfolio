@@ -1,5 +1,8 @@
 name: Optimize images
 
+permissions:
+  contents: write
+
 on:
   push:
     paths:
@@ -40,14 +43,13 @@ jobs:
           # Adjust arguments as needed: --max-width/--quality/--recursive
           python tools/optimize_images.py content/gallery/landscapes --max-width 2048 --quality 85 --recursive
 
-      - name: Commit optimized images
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: optimize images (automated) [skip ci]"
-            git push
-          fi
+      - name: Create Pull Request with optimized images
+        uses: peter-evans/create-pull-request@v4
+        with:
+          # token defaults to GITHUB_TOKEN; explicit is fine
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: optimize images (automated)"
+          branch: "optimize/images-${{ github.run_id }}"
+          title: "chore: optimize images (automated)"
+          body: "Automated image optimization results."
+          labels: automated
