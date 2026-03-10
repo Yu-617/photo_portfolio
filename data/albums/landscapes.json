@@ -1,0 +1,14 @@
+{
+  "lake.jpeg": {
+    "weight": 30,
+    "comment": "諏訪湖の風景"
+  },
+  "sky_moon.jpeg": {
+    "weight": 5,
+    "comment": null
+  },
+  "sunset_fuji.jpeg": {
+    "weight": null,
+    "comment": null
+  }
+}
