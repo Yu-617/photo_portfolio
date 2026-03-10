@@ -1,0 +1,209 @@
+<section class="gallery">
+  <div id="gallery" style="visibility: hidden; height: 1px; overflow: hidden">
+    {{/* build album slug from page dir */}}
+    {{ $pageDir := .Page.File.Dir }}
+    {{ $trim := replaceRE "/$" "" $pageDir }}
+    {{ $parts := split $trim "/" }}
+    {{ $lastIdx := sub (len $parts) 1 }}
+    {{ $slug := cond (eq (len $parts) 0) "root" (index $parts $lastIdx) }}
+    {{ $meta := index site.Data.albums $slug }}
+    
+
+    {{/* collect images with optional weight/comment from data */}}
+    {{ $images := slice }}
+    {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
+      {{ $entry := dict }}
+      {{ if $meta }}
+        {{ $entry = index $meta $image.Name }}
+      {{ end }}
+      {{ $weight := 999999 }}
+      {{ with $entry }}
+        {{ with .weight }}{{ $weight = . }}{{ end }}
+      {{ end }}
+      {{ $date := "" }}
+      {{ with $image.Exif }}
+        {{ $date = .Date }}
+      {{ end }}
+      {{ if $image.Params.Date }}
+        {{ $date = time $image.Params.Date }}
+      {{ end }}
+      {{ $images = $images | append (dict "Name" $image.Name "Weight" $weight "Date" $date "image" $image "Params" $image.Params "Title" $image.Title) }}
+    {{ end }}
+
+    {{/* sort images: CSV があれば weight, なければ date */}}
+    {{ if $meta }}
+      {{ $images = sort $images "Weight" "asc" }}
+    {{ else }}
+      {{ $images = sort $images "Date" "desc" }}
+    {{ end }}
+
+    {{/* render thumbnails and hidden caption HTML for PhotoSwipe */}}
+    {{ range $it := $images }}
+      {{ $image := $it.image }}
+      {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+      {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
+      {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+      <a class="gallery-item"
+         href="{{ $full.RelPermalink }}"
+         data-pswp-src="{{ $full.RelPermalink }}"
+         data-pswp-width="{{ $full.Width }}"
+         data-pswp-height="{{ $full.Height }}"
+         data-pswp-target="{{ $image.Name | urlize }}"
+         title="{{ $image.Title }}"
+         itemscope itemtype="https://schema.org/ImageObject"
+         style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+        <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
+          <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ $image.Title }}" />
+        </figure>
+        <meta itemprop="contentUrl" content="{{ $full.RelPermalink }}" />
+        
+        {{ with site.Params.Author }}
+          <span itemprop="creator" itemtype="https://schema.org/Person" itemscope>
+            <meta itemprop="name" content="{{ site.Params.Author.name }}" />
+          </span>
+        {{ end }}
+
+        {{/* キャプション組立て: CSV の comment(あれば) + 改行 + 機材 + 改行 + 撮影条件 */}}
+        {{/* robust lookup: try exact name, then basename without extension */}}
+        {{ $entry := dict }}
+        {{ if $meta }}
+          {{ $entry = index $meta $image.Title }}
+          {{ if not $entry }}
+            {{ $entry = index $meta $image.Name }}
+          {{ end }}
+          {{ if not $entry }}
+            {{ $base := replaceRE "\\.[^.]+$" "" $image.Title }}
+            {{ $entry = index $meta $base }}
+          {{ end }}
+          {{ if not $entry }}
+            {{ $base := replaceRE "\\.[^.]+$" "" $image.Name }}
+            {{ $entry = index $meta $base }}
+          {{ end }}
+          {{ if not $entry }}
+            {{ $t := replaceRE "\\.[^.]+$" "" $image.Title }}
+            {{ $tNorm := lower (replaceRE "[^A-Za-z0-9]" "" $t) }}
+            {{ range $k, $v := $meta }}
+              {{ if not $entry }}
+                {{ $kbase := replaceRE "\\.[^.]+$" "" $k }}
+                {{ $kNorm := lower (replaceRE "[^A-Za-z0-9]" "" $kbase) }}
+                {{ if eq $kNorm $tNorm }}
+                  {{ $entry = $v }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+          {{ if not $entry }}
+            {{ $base := replaceRE "\\.[^.]+$" "" $image.Title }}
+            {{ $baseShort := index (split $base "_") 0 }}
+            {{ range $k, $v := $meta }}
+              {{ if not $entry }}
+                {{ if or (hasPrefix $k $base) (hasPrefix $k $baseShort) (in $k $base) (in $k $baseShort) }}
+                  {{ $entry = $v }}
+                {{ end }}
+              {{ end }}
+            {{ end }}
+          {{ end }}
+        {{ end }}
+        {{ $model := "" }}{{ $lens := "" }}{{ $f := "" }}{{ $ss := "" }}{{ $iso := "" }}
+        {{ with $image.Exif }}
+          {{ $tags := .Tags }}
+          {{ $model = or (index $tags "Model") (index $tags "Make") "" }}
+          {{ $lens = or (index $tags "LensModel") (index $tags "Lens") "" }}
+          {{ $f = or (index $tags "FNumber") "" }}
+          {{ $ss = or (index $tags "ExposureTime") "" }}
+          {{ $iso = or (index $tags "ISOSpeedRatings") (index $tags "ISO") "" }}
+        {{ end }}
+
+        {{/* build equipment/exposure from structured EXIF first */}}
+        {{ $equipment := "" }}
+        {{ if and $model $lens }}
+          {{ $equipment = printf "%s<br>%s" $model $lens }}
+        {{ else if $model }}
+          {{ $equipment = $model }}
+        {{ else if $lens }}
+          {{ $equipment = $lens }}
+        {{ end }}
+        {{ $exposure := "" }}
+        {{ if $f }}{{ $exposure = printf "f/%v" $f }}{{ end }}
+        {{ if $ss }}{{ if ne $exposure "" }}{{ $exposure = printf "%s, %s" $exposure $ss }}{{ else }}{{ $exposure = $ss }}{{ end }}{{ end }}
+        {{ if $iso }}{{ if ne $exposure "" }}{{ $exposure = printf "%s, ISO %v" $exposure $iso }}{{ else }}{{ $exposure = printf "ISO %v" $iso }}{{ end }}{{ end }}
+
+        {{/* normalize comment value */}}
+        {{ $comment := "" }}
+        {{ $captionHTML := "" }}
+        {{ if $entry }}
+          {{ if isset $entry "comment" }}
+            {{ $raw := index $entry "comment" }}
+            {{ if $raw }}{{ $comment = printf "%v" $raw }}{{ end }}
+          {{ else }}
+            {{ $comment = printf "%v" $entry }}
+          {{ end }}
+        {{ end }}
+        {{/* For body/lens/exposure: prefer structured EXIF tags; if missing, try ImageDescription parsing (but do NOT use ImageDescription as caption) */}}
+        {{ $imgDesc := "" }}
+        {{ with $image.Exif }}{{ $imgDesc = or (index .Tags "ImageDescription") $imgDesc }}{{ end }}
+
+        {{/* CSV fields fallback: allow album CSV/data to provide camera/lens/exposure fields */}}
+        {{ if $entry }}
+          {{ if isset $entry "camera" }}{{ $camRaw := index $entry "camera" }}{{ if $camRaw }}{{ $model = printf "%v" $camRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "body" }}{{ $bodyRaw := index $entry "body" }}{{ if $bodyRaw }}{{ $model = printf "%v" $bodyRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "model" }}{{ $modelRaw := index $entry "model" }}{{ if $modelRaw }}{{ $model = printf "%v" $modelRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "lens" }}{{ $lensRaw := index $entry "lens" }}{{ if $lensRaw }}{{ $lens = printf "%v" $lensRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "f" }}{{ $fRaw := index $entry "f" }}{{ if $fRaw }}{{ $f = printf "%v" $fRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "ss" }}{{ $ssRaw := index $entry "ss" }}{{ if $ssRaw }}{{ $ss = printf "%v" $ssRaw }}{{ end }}{{ end }}
+          {{ if isset $entry "iso" }}{{ $isoRaw := index $entry "iso" }}{{ if $isoRaw }}{{ $iso = printf "%v" $isoRaw }}{{ end }}{{ end }}
+        {{ end }}
+
+        {{/* If Model contains Make prefix, strip it (e.g., 'Fujifilm X-S10' -> 'X-S10') using Exif Make tag when available */}}
+        {{ with $image.Exif }}
+          {{ $tags := .Tags }}
+          {{ $make := index $tags "Make" }}
+          {{ if and $make $model (hasPrefix $model $make) }}
+            {{ $model = trim (replace $model $make "") " " }}
+          {{ end }}
+        {{ end }}
+
+        {{/* Fallbacks from ImageDescription when structured tags are absent */}}
+        {{ if ne $imgDesc "" }}
+          {{ $parts := split $imgDesc "," }}
+          {{ $cand := trim (index $parts 0) " " }}
+          {{/* remove JSON comment text from candidate if present */}}
+          {{ if and (ne $comment "") (in $cand $comment) }}
+            {{ $cand = replace $cand $comment "" }}
+            {{ $cand = trim $cand " " }}
+          {{ end }}
+          {{/* try to find model if missing */}}
+          {{ if eq $model "" }}
+            {{ $camMatch := findRE `(?i)(Canon|Nikon|Sony|Fujifilm|Fuji|Olympus|Panasonic|Leica|Pentax)[^,\+]*` $cand }}
+            {{ if gt (len $camMatch) 0 }}{{ $model = trim (index $camMatch 0) " " }}{{ else }}{{/* last token */}}{{ $tok := index (split $cand " ") (sub (len (split $cand " ") ) 1) }}{{ $model = $tok }}{{ end }}
+          {{ end }}
+          {{/* try to find lens if missing */}}
+          {{ if eq $lens "" }}
+            {{ $lensMatch := findRE `([A-Za-z0-9\-\_ ]*[0-9]{1,3}mm[^,\+]*)` $imgDesc }}
+            {{ if gt (len $lensMatch) 0 }}{{ $lens = trim (index $lensMatch 0) " " }}{{ end }}
+          {{ end }}
+          {{/* try to find aperture/shutter/ISO */}}
+          {{ if eq $f "" }}{{ $fMatch := findRE `(?i)f\/?[0-9]+(?:\.[0-9]+)?` $imgDesc }}{{ if gt (len $fMatch) 0 }}{{ $f = trim (replaceRE `(?i)^f\/?` "" (index $fMatch 0)) " " }}{{ end }}{{ end }}
+          {{ if eq $ss "" }}{{ $ssMatch := findRE `\d+\/\d+s?` $imgDesc }}{{ if gt (len $ssMatch) 0 }}{{ $ss = trim (index $ssMatch 0) " " }}{{ end }}{{ end }}
+          {{ if eq $iso "" }}{{ $isoMatch := findRE `(?i)ISO\s*\d+` $imgDesc }}{{ if gt (len $isoMatch) 0 }}{{ $iso = trim (replaceRE `(?i)ISO\s*` "" (index $isoMatch 0)) " " }}{{ end }}{{ end }}
+        {{ end }}
+
+        {{/* Build the caption lines: comment (if any), then body, lens, exposure each on its own line */}}
+        {{ $lines := slice }}
+        {{ if ne $comment "" }}{{ $lines = $lines | append $comment }}{{ end }}
+        {{ if ne $model "" }}{{ $lines = $lines | append $model }}{{ end }}
+        {{ if ne $lens "" }}{{ $lines = $lines | append $lens }}{{ end }}
+        {{/* normalize exposure pieces */}}
+        {{ $expParts := slice }}
+        {{ if ne $f "" }}{{ $expParts = $expParts | append (printf "f/%v" $f) }}{{ end }}
+        {{ if ne $ss "" }}{{ $sh := $ss }}{{ if and (in $sh "/") (not (hasSuffix $sh "s")) }}{{ $sh = printf "%ss" $sh }}{{ end }}{{ $expParts = $expParts | append $sh }}{{ end }}
+        {{ if ne $iso "" }}{{ $expParts = $expParts | append (printf "ISO %v" $iso) }}{{ end }}
+        {{ if gt (len $expParts) 0 }}{{ $lines = $lines | append (delimit $expParts ", ") }}{{ end }}
+
+        {{ $captionHTML = delimit $lines "<br>" }}
+        
+        <div class="pswp-caption-content" style="display:none">{{ $captionHTML | safeHTML }}</div>
+      </a>
+    {{ end }}
+  </div>
+</section>
