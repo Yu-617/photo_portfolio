@@ -19,6 +19,21 @@ for dirpath, dirs, files in os.walk(CONTENT_GALLERY):
                 fname = row.get('filename') or row.get('file') or row.get('name')
                 if not fname:
                     continue
+                # allow album-level meta rows: filename starting with __ (e.g. __meta)
+                if fname.startswith('__'):
+                    meta = {}
+                    for k, v in row.items():
+                        if k is None:
+                            continue
+                        key = k.strip()
+                        if key.lower() in ('filename', 'file', 'name'):
+                            continue
+                        val = (v or '').strip()
+                        if val != '':
+                            meta[key] = val
+                    mapping[fname] = meta
+                    continue
+
                 weight = row.get('weight', '').strip()
                 try:
                     weight = int(weight) if weight != '' else None

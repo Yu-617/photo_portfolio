@@ -11,31 +11,65 @@
 
     {{/* collect images with optional weight/comment from data */}}
     {{ $images := slice }}
+    {{ $withWeight := slice }}
+    {{ $withoutWeight := slice }}
     {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
       {{ $entry := dict }}
       {{ if $meta }}
         {{ $entry = index $meta $image.Name }}
       {{ end }}
-      {{ $weight := 999999 }}
+      {{ $weight := -1 }}
       {{ with $entry }}
         {{ with .weight }}{{ $weight = . }}{{ end }}
       {{ end }}
-      {{ $date := "" }}
-      {{ with $image.Exif }}
-        {{ $date = .Date }}
-      {{ end }}
+      {{ $date := time "1970-01-01T00:00:00Z" }}
+      {{/* Priority: explicit Params.Date > EXIF Create/Original date > EXIF .Date > resource ModTime > epoch */}}
       {{ if $image.Params.Date }}
         {{ $date = time $image.Params.Date }}
+      {{ else }}
+        {{ with $image.Exif }}
+          {{ $tags := .Tags }}
+          {{/* Prefer CreateDate, then DateTimeOriginal, then .Date */}}
+          {{ if index $tags "CreateDate" }}
+            {{ $raw := index $tags "CreateDate" }}
+            {{ $norm := replaceRE "^([0-9]{4}):([0-9]{2}):([0-9]{2})" "$1-$2-$3" $raw }}
+            {{ $date = time $norm }}
+          {{ else if index $tags "DateTimeOriginal" }}
+            {{ $raw := index $tags "DateTimeOriginal" }}
+            {{ $norm := replaceRE "^([0-9]{4}):([0-9]{2}):([0-9]{2})" "$1-$2-$3" $raw }}
+            {{ $date = time $norm }}
+          {{ else if .Date }}
+            {{ $date = .Date }}
+          {{ end }}
+        {{ end }}
+        {{/* If no EXIF/Params date found, keep epoch (will sort to end). File.ModTime access varies by Hugo/resource version, so avoid to prevent render errors. */}}
       {{ end }}
-      {{ $images = $images | append (dict "Name" $image.Name "Weight" $weight "Date" $date "image" $image "Params" $image.Params "Title" $image.Title) }}
+      {{ $item := dict "Name" $image.Name "Weight" $weight "Date" $date "image" $image "Params" $image.Params "Title" $image.Title }}
+      {{ if ge $weight 0 }}
+        {{ $withWeight = $withWeight | append $item }}
+      {{ else }}
+        {{ $withoutWeight = $withoutWeight | append $item }}
+      {{ end }}
     {{ end }}
-
-    {{/* sort images: CSV があれば weight, なければ date */}}
-    {{ if $meta }}
-      {{ $images = sort $images "Weight" "asc" }}
+    {{/* sort images: weight があるものは weight 昇順、それ以外は EXIF CreateDate を優先して日付降順 */}}
+    {{ $withWeight = sort $withWeight "Weight" "asc" }}
+    {{/* album-level ordering: default desc, can be overridden by meta entry __meta.date_order (asc|desc) */}}
+    {{ $albumOrder := "desc" }}
+    {{ if and $meta (or (isset $meta "__meta") (isset $meta "_meta")) }}
+      {{ $m := cond (isset $meta "__meta") (index $meta "__meta") (index $meta "_meta") }}
+      {{ with $m.date_order }}{{ $albumOrder = lower . }}{{ end }}
+      {{ with $m.order }}{{ $albumOrder = lower . }}{{ end }}
+    {{ end }}
+    {{ if ne $albumOrder "asc" }}
+      {{ $withoutWeight = sort $withoutWeight "Date" "desc" }}
     {{ else }}
-      {{ $images = sort $images "Date" "desc" }}
+      {{ $withoutWeight = sort $withoutWeight "Date" "asc" }}
     {{ end }}
+    {{/* concatenate: weights first, then the rest */}}
+    {{ range $i := $withoutWeight }}
+      {{ $withWeight = $withWeight | append $i }}
+    {{ end }}
+    {{ $images = $withWeight }}
 
     {{/* render thumbnails and hidden caption HTML for PhotoSwipe */}}
     {{ range $it := $images }}
