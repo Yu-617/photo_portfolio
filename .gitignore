@@ -12,3 +12,6 @@ Thumbs.db
 
 # ローカル環境特有の設定がある場合
 .env
+
+# 写真のbackup file
+.bak
