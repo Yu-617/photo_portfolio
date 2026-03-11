@@ -13,6 +13,34 @@
       "set": [
         {"label": "IFD0:Model", "value": "Film"}
       ]
+    },
+    {
+      "name": "old_lens",
+      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
+      "match": {
+        "mode": "and",
+        "conditions": [
+          {"label": "Exif:FNumber", "op": "eq", "value": "(0, 1)"}
+        ]
+      },
+      "set": [
+        {"label": "LensModel", "value": "SMC Takumar 55mm F1.8"}
+      ]
+    },
+    {
+      "name": "clear_lens_for_iphone_se3",
+      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
+      "match": {
+        "mode": "and",
+        "conditions": [
+          {"label": "IFD0:Model", "op": "eq", "value": "iPhone SE (3rd generation)"}
+        ]
+      },
+      "set": [
+        {"label": "LensModel", "value": ""},
+        {"label": "Lens", "value": ""}
+      ]
     }
   ]
 }
+
