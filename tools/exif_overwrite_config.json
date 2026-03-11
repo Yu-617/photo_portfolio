@@ -1,0 +1,18 @@
+{
+  "rules": [
+    {
+      "name": "film_body",
+      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
+      "match": {
+        "mode": "or",
+        "conditions": [
+          {"label": "IFD0:Model", "op": "eq", "value": "EZ Controller"},
+          {"label": "IFD0:Model", "op": "eq", "value": "SP-3000"}
+        ]
+      },
+      "set": [
+        {"label": "IFD0:Model", "value": "Film"}
+      ]
+    }
+  ]
+}
