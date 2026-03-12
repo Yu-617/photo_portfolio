@@ -1,0 +1,10 @@
+filename,weight,comment,date_order
+__meta,,,asc
+# 以下は例行（CSVの空行に注意）
+photo.jpeg,10,comment,
+
+# フィールド説明:
+# - filename: 画像ファイル名（ページバンドル内に存在すること）
+# - weight: 並び順を数値で指定（float, 小さい方が先）
+# - comment: 画像のキャプション（CSV から data/albums/*.json に変換されます）
+# - date_order: アルバム全体の並び順デフォルト（asc/desc；__meta 行で指定）
