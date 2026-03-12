@@ -5,14 +5,21 @@ exif_overwrite.py
 Manually run to conditionally overwrite EXIF tags without touching other metadata.
 
 Usage:
-  python tools/exif_overwrite.py --config tools/exif_overwrite_config.json [--dry-run] [paths...]
+    python tools/exif_overwrite.py --config tools/exif_overwrite_config.json [--dry-run] [paths...]
 
 Config file (JSON) structure example is provided in tools/exif_overwrite_config.json.
 
+Notes:
+ - The `files` field in a rule is optional. If omitted, the script will by default
+     recursively scan `content/` for JPEG files (case variants of `.jpg`/`.jpeg`).
+ - If `files` is present it may be a string or a list of glob patterns. CLI `paths`
+     override rule `files` entirely.
+
 Behavior:
- - For each rule in config, files matching the rule's "files" glob are evaluated.
+ - For each rule in config, files matching the rule's `files` glob (or the default
+     content/ patterns) are evaluated.
  - If the rule's match conditions are satisfied (AND/OR, equality/contains/regex),
-   the specified target tags are overwritten with provided values.
+     the specified target tags are overwritten with provided values.
  - Other EXIF tags and other metadata are preserved.
  - Creates backups by default unless --no-backup is passed.
 
@@ -219,12 +226,28 @@ def main():
 
     rules = cfg.get('rules', [])
     cwd = Path('.')
+    # default patterns: recursively search content/ for common JPEG extensions
+    default_patterns = [
+        'content/**/*.jpg',
+        'content/**/*.jpeg',
+        'content/**/*.JPG',
+        'content/**/*.JPEG',
+    ]
+
     for rule in rules:
-        files = rule.get('files', [])
-        # allow override from CLI
+        # CLI paths override everything
         if args.paths:
             files = args.paths
+        else:
+            files = rule.get('files') or default_patterns
+
+        # allow single-string entry in config
+        if isinstance(files, str):
+            files = [files]
+
         targets = expand_files(files, cwd=cwd)
+        if not targets:
+            print(f"[INFO] No targets found for rule '{rule.get('name', '<unnamed>')}'")
         for t in targets:
             process_file(t, rule, dry_run=args.dry_run, backup=not args.no_backup)
 

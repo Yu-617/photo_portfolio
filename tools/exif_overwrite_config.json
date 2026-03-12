@@ -2,7 +2,6 @@
   "rules": [
     {
       "name": "film_body",
-      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
       "match": {
         "mode": "or",
         "conditions": [
@@ -16,7 +15,6 @@
     },
     {
       "name": "old_lens",
-      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
       "match": {
         "mode": "and",
         "conditions": [
@@ -29,7 +27,6 @@
     },
     {
       "name": "clear_lens_for_iphone_se3",
-      "files": ["content/gallery/*/*.jpeg", "content/gallery/*/*.jpg", "content/gallery/*/*.JPEG", "content/gallery/*/*.JPG"],
       "match": {
         "mode": "and",
         "conditions": [
@@ -37,8 +34,7 @@
         ]
       },
       "set": [
-        {"label": "LensModel", "value": ""},
-        {"label": "Lens", "value": ""}
+        {"label": "LensModel", "value": ""}
       ]
     }
   ]

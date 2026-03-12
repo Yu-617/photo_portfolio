@@ -70,6 +70,8 @@ def main():
 	opt_script = tools_dir / 'optimize_images.py'
 	if opt_script.exists():
 		cmd = [sys.executable, str(opt_script), 'content/gallery']
+		# process subdirectories (child albums)
+		cmd.append('--recursive')
 		# sensible defaults: keep backup unless user passed --no-backup
 		if args.dry_run:
 			cmd.append('--dry-run')
@@ -85,6 +87,8 @@ def main():
 	del_script = tools_dir / 'delete_gps.py'
 	if del_script.exists():
 		cmd = [sys.executable, str(del_script), 'content/gallery']
+		# ask delete_gps to recurse into subdirectories
+		cmd.append('--recursive')
 		if args.dry_run:
 			cmd.append('--dry-run')
 		rc = run(cmd)
