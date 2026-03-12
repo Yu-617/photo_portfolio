@@ -14,4 +14,4 @@ Thumbs.db
 .env
 
 # 写真のbackup file
-.bak
+*.bak
