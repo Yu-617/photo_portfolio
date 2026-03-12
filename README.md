@@ -12,57 +12,47 @@
 
 [スクショ3]
 
-[Hugo](https://gohugo.io/)およびテーマ[hugo-theme-gallery](https://github.com/nicokaiser/hugo-theme-gallery) をベースにカスタマイズしています。
+[Hugo](https://gohugo.io/) および、そのテーマのひとつ [hugo-theme-gallery](https://github.com/nicokaiser/hugo-theme-gallery) をベースにカスタマイズしています。
 
-## 構成
-### 運用
-- **画像配置:** JPG はアルバムごとに `content/gallery/<album>/` 配下に配置してください。
-- **表示順・コメント管理:** 各アルバムの並び順やキャプション用コメントは`<album>/` 配下のCSVで管理しています（`data/albums/*.json` は `tools/csv_to_data.py` により生成されます）。
-- **画像処理・メタデータ反映:** 画像の最適化、EXIF の上書き、GPS 削除などの処理はすべて `tools/` 以下のスクリプトで行います。手動で個別に実行する代わりに、まとめて実行するには `run_tool.py` を実行してください。
+## 運用方法
 
-### 主なツールファイル
-- 設定・実行ラッパー: [run_tool.py](run_tool.py)
-- EXIF 上書き設定: [tools/exif_overwrite_config.json](tools/exif_overwrite_config.json)
-- ツール群: `tools/` ディレクトリ内に以下のスクリプトがあります（例）
-	- `csv_to_data.py` — CSV → JSON（albums）
-	- `exif_overwrite.py` — 条件に応じた EXIF 上書き（ルールは設定ファイル参照）
-	- `optimize_images.py` — リサイズ / 再圧縮 / WebP 変換（EXIF を可能な限り保持）
-	- `delete_gps.py` — JPEG から GPS 情報を削除
+1) アルバムに画像を追加する
+	- 画像はJPGを想定しています。
+	- 新規アルバムを作る際は `content/gallery/<album>/` を作成し、画像を格納します。
+	- `content/gallery/<folder>/.../<folder>/<album>/` とすることで階層化も可能です。
+	- アルバムに `index.md` (フォルダーなら `_index.md`) を置き、必要情報を記載してください。テンプレートは [`/templates/album_index.md`](https://github.com/Yu-617/photo_portfolio/tree/main/templates/album_index.md), [`/templates/parent__index.md`](https://github.com/Yu-617/photo_portfolio/tree/main/templates/parent__index.md) の通りです。
 
-### 使い方
-1. 画像を `content/gallery/<album>/` に格納し、`index.md`を作成する。
-2. 必要ならアルバム CSV を編集して順序・コメントを指定する。
-3. ツールを動かす（まずはドライラン推奨）:
+2) コメント・表示順を編集する (optional)
+	- 各アルバムフォルダに `album.csv` を置くことで、各写真の表示順とコメント（キャプションに記載）を指定できます。
+	- テンプレートは [`/templates/album.csv`](https://github.com/Yu-617/photo_portfolio/tree/main/templates/album.csv) の通りです。
+	- 表示順とコメントを反映するには、 [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/csv_to_data.py) を実行し、JSONを生成する必要があります（後述）。
 
+3) 画像の処理などを行う
+	- **pushする前に [`run_tool.py`](https://github.com/Yu-617/photo_portfolio/tree/main/run_tool.py) (もしくは最低でも [`/tools/delete_gps.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/delete_gps.py)) を実行することを強く推奨します。**
+	- [`run_tool.py`](https://github.com/Yu-617/photo_portfolio/tree/main/run_tool.py) を実行する
+	```bash
+	python run_tool.py
+	```
+	ことで、以下の処理がまとめて実行されます。
+	1. [`/tools/delete_gps.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/delete_gps.py): 画像のEXIFに格納されているGPS情報を削除
+	2. [`/tools/exif_overwrite.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/exif_overwrite.py): EXIF上書き
+		- キャプションに記載される、画像のEXIFに格納されているレンズ情報等を、手動で指定した形に上書き変更します。
+		- 変更規則は [`/tools/exif_overwrite_config.json`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/exif_overwrite_config.json) で指定します。
+    3.  [`/tools/exif_overwrite.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/exif_overwrite.py): 画像の軽量化
+    4.  [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/tree/main/tools/csv_data.py): `album.csv` からのJSON生成
+
+4) ローカルでの確認
 ```bash
-# ドライラン（安全確認）
-python3 run_tool.py --dry-run
+hugo server -D & sleep 1 && open http://localhost:1313/
+```  
 
-# 実際に反映（バックアップを残す）
-python3 run_tool.py
+5) デプロイ
+	- 問題がなければpushします。
+	- 画像上書き時に生成されるバックアップファイル `*.bak` は `.gitignore` によりcommitされません。
+	- [`/.github/workflows/hugo.yml`](https://github.com/Yu-617/photo_portfolio/tree/main/.github/workflows/hugo.yml) により自動的にHugoサイトがビルドされます。
 
-# 実行時にバックアップを作らない
-python3 run_tool.py --no-backup
-```
-## 技術的情報
-### 注意
-- 依存: Python3, Pillow, （オプションで）piexif が必要です。インストール例:
 
-```bash
-python3 -m pip install Pillow piexif
-```
-- `exif_overwrite.py` と `optimize_images.py` は処理前に元ファイルのバックアップ（`.bak`）を作成する設定があります。まずは `--dry-run` で動作を確認してください。
-- EXIF タグのルールは `tools/exif_overwrite_config.json` で定義します。例: `Exif:FNumber`（絞り）、`IFD0:Model`（カメラ本体）など。
-- キャプション生成はページテンプレート側で EXIF の `LensModel` / `Lens` / `ImageDescription` 等を参照して組み立てています。表示の調整は [layouts/partials/gallery.html](layouts/partials/gallery.html) を編集してください。
+### その他注意
+- ドライラン (`--dry-run`) することで、ツール実行前に挙動を確認できます。
+- バックアップ `*.bak` を元に戻す場合の例: `mv img.jpg.bak img.jpg`
 
-### トラブルシュート
-- 変更が適用されない場合は、まず対象画像で EXIF を確認してください:
-
-```bash
-python3 - <<'PY'
-import piexif
-ex = piexif.load('content/gallery/<album>/<file>.jpg')
-print(ex)
-PY
-```
-- 上書きルールは文字列比較で行われます。真偽判定に問題がある場合は `tools/exif_overwrite.py` を `--dry-run` で実行し、出力メッセージを参照してください。
