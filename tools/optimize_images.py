@@ -54,18 +54,17 @@ def process_image(path: Path, max_width: int, max_height: int, quality: int, con
     try:
         with Image.open(path) as img:
             original_format = img.format
+            # Get EXIF bytes and normalize orientation first so size/ratio are computed
+            exif_bytes = _get_exif_bytes(img)
+            img, exif_bytes = _normalize_orientation(img, exif_bytes)
+
             w, h = img.size
             ratio = min(1, max_width / w if max_width else 1, max_height / h if max_height else 1)
             new_size = (int(w * ratio), int(h * ratio))
 
-            exif_bytes = _get_exif_bytes(img)
-
             if dry_run:
                 print(f"[DRY] {path} -> {w}x{h} -> {new_size}, format={original_format}, exif={'yes' if exif_bytes else 'no'}")
                 return True
-
-            # Normalize orientation and update exif if possible
-            img, exif_bytes = _normalize_orientation(img, exif_bytes)
 
             if ratio < 1:
                 img = img.resize(new_size, Image.LANCZOS)
