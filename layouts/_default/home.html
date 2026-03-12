@@ -12,9 +12,12 @@
   {{ partial "featured.html" . }}
 
   <section class="galleries">
-    {{ $galleries := where site.RegularPages "Section" "gallery" }}
-    {{ range where $galleries "Params.featured" "!=" true }}
-      {{ partial "album-card.html" . }}
+    {{ $galleries := where site.Pages "Section" "gallery" }}
+    {{ range $galleries }}
+      {{ $isTop := or .IsNode (not .Parent) }}
+      {{ if and $isTop (ne .Params.featured true) }}
+        {{ partial "album-card.html" . }}
+      {{ end }}
     {{ end }}
   </section>
 
