@@ -28,7 +28,7 @@
 	- 表示順とコメントを反映するには、 [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/csv_to_data.py) を実行し、JSONを生成する必要があります（後述）。
 
 3) 画像の処理などを行う
-	- **pushする前に [`run_tool.py`](https://github.com/Yu-617/photo_portfolio/blob/main/run_tool.py) (もしくは最低でも [`/tools/delete_gps.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/delete_gps.py)) を実行することを強く推奨します。**
+	- **commitする前に [`run_tool.py`](https://github.com/Yu-617/photo_portfolio/blob/main/run_tool.py) (もしくは最低でも [`/tools/delete_gps.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/delete_gps.py)) を実行することを強く推奨します。**
 	- [`run_tool.py`](https://github.com/Yu-617/photo_portfolio/blob/main/run_tool.py) を実行する
 	```bash
 	python run_tool.py
