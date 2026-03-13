@@ -2,7 +2,7 @@
 title: "Blue Sky"
 date:
 description: ""
-weight: 
+weight: 400
 params:
   featured: false
   private: false
