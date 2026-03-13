@@ -76,7 +76,8 @@
       {{ $image := $it.image }}
       {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
       {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
-      {{ $color := index $thumbnail.Colors 0 | default "transparent" }}
+      {{/* Colors 呼び出しで処理が失敗する環境があるため、暫定的に既定色を使用する */}}
+      {{ $color := "transparent" }}
       <a class="gallery-item"
          href="{{ $full.RelPermalink }}"
          data-pswp-src="{{ $full.RelPermalink }}"

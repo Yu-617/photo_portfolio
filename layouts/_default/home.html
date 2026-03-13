@@ -14,7 +14,8 @@
   <section class="galleries">
     {{ $galleries := where site.Pages "Section" "gallery" }}
     {{ range $galleries }}
-      {{ $isTop := or .IsNode (not .Parent) }}
+      {{/* show section nodes or pages whose parent is a section (top-level albums) */}}
+      {{ $isTop := or .IsNode (and .Parent (eq .Parent.Kind "section")) }}
       {{ if and $isTop (ne .Params.featured true) }}
         {{ partial "album-card.html" . }}
       {{ end }}
