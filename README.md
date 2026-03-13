@@ -6,15 +6,16 @@
 サイトは以下よりアクセスできます。
 - **[https://Yu-617.github.io/photo_portfolio/](https://Yu-617.github.io/photo_portfolio/)**
 
-[スクショ1]
+<img width="1413" height="889" alt="Screenshot 2026-03-14 at 2 44 17" src="https://github.com/user-attachments/assets/2a4769f0-28c3-4d8e-9a69-3edda85f4c86" />
+<img width="1661" height="874" alt="Screenshot 2026-03-14 at 2 44 31" src="https://github.com/user-attachments/assets/03a3c03c-10a4-4796-8c1e-1570d1aff702" />
+<img width="1675" height="886" alt="Screenshot 2026-03-14 at 2 44 53" src="https://github.com/user-attachments/assets/580836b2-7ec9-4544-aa64-a1d4fed2e618" />
 
-[スクショ2]
-
-[スクショ3]
 
 [Hugo](https://gohugo.io/) および、そのテーマのひとつ [hugo-theme-gallery](https://github.com/nicokaiser/hugo-theme-gallery) をベースにカスタマイズしています。
 
 ## 運用方法
+
+### 基本手順
 
 1) アルバムに画像を追加する
 	- 画像はJPGを想定しています。
