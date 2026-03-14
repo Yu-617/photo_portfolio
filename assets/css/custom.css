@@ -53,3 +53,14 @@
 section.galleries {
   gap: 1.25rem 1rem; /* デフォルト 2rem 1.5rem をやや縮小 */
 }
+
+/* PhotoSwipe キャプション幅の上書き（PC向け）：1行あたり全角約5文字分ほど増やす */
+@media (min-width: 900px) {
+  .pswp__dynamic-caption--below {
+    max-width: 780px; /* デフォルト 700px -> +80px（全角約5文字分） */
+  }
+
+  .pswp__dynamic-caption--aside {
+    max-width: 380px; /* デフォルト 300px -> +80px */
+  }
+}
