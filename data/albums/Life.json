@@ -1,0 +1,29 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_blue.JPEG": {
+    "weight": 100,
+    "comment": null
+  },
+  "boston.JPG": {
+    "weight": null,
+    "comment": "Boston"
+  },
+  "car.jpg": {
+    "weight": null,
+    "comment": "Boston"
+  },
+  "london_rain.JPG": {
+    "weight": null,
+    "comment": "London"
+  },
+  "manchester.JPG": {
+    "weight": null,
+    "comment": "Manchester"
+  },
+  "cathedral.JPG": {
+    "weight": null,
+    "comment": "Manchester"
+  }
+}

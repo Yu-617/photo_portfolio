@@ -1,0 +1,49 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_yomiuri.JPG": {
+    "weight": 100,
+    "comment": null
+  },
+  "fish_bottle.jpg": {
+    "weight": 200,
+    "comment": null
+  },
+  "vending.JPG": {
+    "weight": 300,
+    "comment": null
+  },
+  "car_light.JPG": {
+    "weight": 400,
+    "comment": null
+  },
+  "moon.JPG": {
+    "weight": 500,
+    "comment": null
+  },
+  "tower.JPG": {
+    "weight": 600,
+    "comment": null
+  },
+  "light.JPG": {
+    "weight": 700,
+    "comment": null
+  },
+  "christmas.JPG": {
+    "weight": 800,
+    "comment": null
+  },
+  "gate.JPG": {
+    "weight": 900,
+    "comment": null
+  },
+  "phone.JPG": {
+    "weight": 1000,
+    "comment": null
+  },
+  ".JPG": {
+    "weight": 1100,
+    "comment": null
+  }
+}

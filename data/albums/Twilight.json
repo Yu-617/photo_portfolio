@@ -1,0 +1,25 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_fuji.JPG": {
+    "weight": 100,
+    "comment": null
+  },
+  "eva.JPG": {
+    "weight": 200,
+    "comment": null
+  },
+  "buildings.JPG": {
+    "weight": 300,
+    "comment": null
+  },
+  "grass.JPG": {
+    "weight": 400,
+    "comment": null
+  },
+  "hiroshima.JPG": {
+    "weight": 500,
+    "comment": null
+  }
+}

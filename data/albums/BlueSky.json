@@ -1,0 +1,41 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_blueimpulse_six.JPG": {
+    "weight": 100,
+    "comment": null
+  },
+  "suwa.jpg": {
+    "weight": 200,
+    "comment": null
+  },
+  "ginkgo.JPG": {
+    "weight": 300,
+    "comment": null
+  },
+  "stop.JPG": {
+    "weight": 400,
+    "comment": null
+  },
+  "crossing.jpg": {
+    "weight": 500,
+    "comment": null
+  },
+  "some.jpg": {
+    "weight": 600,
+    "comment": null
+  },
+  "windmill_sky.JPG": {
+    "weight": 700,
+    "comment": null
+  },
+  "windmill_sea.JPG": {
+    "weight": 800,
+    "comment": null
+  },
+  "yoyogi.JPG": {
+    "weight": 900,
+    "comment": null
+  }
+}

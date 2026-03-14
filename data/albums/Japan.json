@@ -1,0 +1,29 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_yasaka.JPG": {
+    "weight": 100,
+    "comment": null
+  },
+  "atami.JPG": {
+    "weight": 200,
+    "comment": null
+  },
+  "branch.JPG": {
+    "weight": 300,
+    "comment": null
+  },
+  "saisen.JPG": {
+    "weight": 400,
+    "comment": null
+  },
+  "torii.JPG": {
+    "weight": 500,
+    "comment": null
+  },
+  "ray.jpg": {
+    "weight": 600,
+    "comment": null
+  }
+}

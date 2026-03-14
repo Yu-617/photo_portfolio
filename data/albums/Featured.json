@@ -1,0 +1,65 @@
+{
+  "__meta": {
+    "date_order": "asc"
+  },
+  "feature_spring.JPG": {
+    "weight": 100,
+    "comment": null
+  },
+  "summer.JPG": {
+    "weight": 200,
+    "comment": null
+  },
+  "autumn.JPG": {
+    "weight": 300,
+    "comment": null
+  },
+  "winter.JPG": {
+    "weight": 400,
+    "comment": null
+  },
+  "sunrise.JPG": {
+    "weight": 500,
+    "comment": null
+  },
+  "sunrise_flight.jpg": {
+    "weight": 600,
+    "comment": null
+  },
+  "blueimpulse_one.JPG": {
+    "weight": 700,
+    "comment": null
+  },
+  "sky_pink.jpg": {
+    "weight": 800,
+    "comment": null
+  },
+  "sunset_film.JPG": {
+    "weight": 900,
+    "comment": null
+  },
+  "asakusa.JPG": {
+    "weight": 1000,
+    "comment": null
+  },
+  "hands.JPG": {
+    "weight": 1100,
+    "comment": null
+  },
+  "obsession.JPG": {
+    "weight": 1200,
+    "comment": null
+  },
+  "maho_imagine_bw.JPG": {
+    "weight": 1300,
+    "comment": null
+  },
+  "maho_back.JPG": {
+    "weight": 1400,
+    "comment": null
+  },
+  "maho_kanadevia_red.JPG": {
+    "weight": 1500,
+    "comment": null
+  }
+}
