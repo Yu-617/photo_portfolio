@@ -16,13 +16,20 @@
     {
       "name": "old_lens",
       "match": {
-        "mode": "and",
+        "mode": "or",
         "conditions": [
-          {"label": "Exif:FNumber", "op": "eq", "value": "(0, 1)"}
+          {"label": "Exif:FNumber", "op": "eq", "value": "(0, 1)"},
+          {"label": "Exif:FNumber", "op": "eq", "value": "(0, 0)"},
+          {"label": "Exif:FNumber", "op": "eq", "value": "undef"},
+          {"label": "Exif:ApertureValue", "op": "eq", "value": "(0, 0)"},
+          {"label": "Exif:FNumber", "op": "regex", "value": "^(?:\\(?0[\\/,\\s]*1\\)?|0)$"},
+          {"label": "Exif:LensSpecification", "op": "contains", "value": "0, 0"},
+          {"label": "Exif:LensInfo", "op": "regex", "value": "f/\\?"}
         ]
       },
       "set": [
-        {"label": "LensModel", "value": "Super-Multi-Coated Takumar 55mm F1.8"}
+        {"label": "LensModel", "value": "Super-Multi-Coated Takumar 55mm F1.8"},
+        {"label": "Exif:FNumber", "value": "(0, 1)"}
       ]
     },
     {

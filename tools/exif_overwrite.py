@@ -90,8 +90,24 @@ def set_tag_value(ifds, ifd_name, tag_id, value):
     # Ensure ifd exists
     if ifd_name not in ifds:
         ifds[ifd_name] = {}
-    # encode strings to bytes as piexif expects bytes for ASCII fields
+    # If value is a string that encodes a rational like "(0, 1)" or "0/1",
+    # convert to a numeric tuple so piexif writes the proper rational type.
     if isinstance(value, str):
+        # try to parse tuple form '(num, num)'
+        m = re.match(r"^\(\s*(\d+)\s*,\s*(\d+)\s*\)$", value)
+        if m:
+            ifds[ifd_name][tag_id] = (int(m.group(1)), int(m.group(2)))
+            return
+        # try to parse 'num/num' form
+        m = re.match(r"^(\d+)\s*/\s*(\d+)$", value)
+        if m:
+            ifds[ifd_name][tag_id] = (int(m.group(1)), int(m.group(2)))
+            return
+        # try numeric integer
+        if value.isdigit():
+            ifds[ifd_name][tag_id] = int(value)
+            return
+        # otherwise encode strings to bytes as piexif expects bytes for ASCII fields
         ifds[ifd_name][tag_id] = value.encode('utf-8')
     else:
         ifds[ifd_name][tag_id] = value
