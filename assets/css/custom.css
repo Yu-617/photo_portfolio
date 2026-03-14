@@ -64,3 +64,70 @@ section.galleries {
     max-width: 380px; /* デフォルト 300px -> +80px */
   }
 }
+
+/* Prose（本文）見出しの階層を表示に反映 */
+.prose h1{
+  font-size: 1.75rem;
+  margin-top: 1.2em;
+  margin-bottom: 0.6em;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.prose h2{
+  font-size: 1.375rem;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.prose h3{
+  /* 既存スタイルを補完（テーマに既にあるが上書き調整） */
+  margin-top: 1.1em;
+  margin-bottom: 0.5em;
+}
+
+/* 本文内のSNSリンク用アイコン */
+.prose .social-links{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.prose .social-links a{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-1);
+  text-decoration: none;
+  border: none; /* remove border to match compact icon style */
+  padding: 0;
+}
+.prose .social-links a:hover{
+  transform: translateY(-1px);
+}
+.prose .social-links a svg{ width:20px; height:20px; display:block; }
+
+/* Align member names so social icons line up horizontally
+   -> Only apply to the Members section (h2#members + ul) to avoid global effect */
+.prose h2#members + ul li strong:first-child {
+  display: inline-block;
+  width: 60px; /* narrowed per request */
+  text-align: left;
+  margin-right: 0.5rem;
+}
+
+/* Member name utility classes for shortcode */
+.member-name{
+  display:inline-block;
+  width:64px;
+  text-align:left;
+  margin-right:0.5rem;
+  font-weight:700;
+}
+.member-name--narrow{ width:64px; }
+.member-name--wide{ width:110px; }
+.member-links{ display:inline; }
