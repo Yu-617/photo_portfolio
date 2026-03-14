@@ -1,13 +1,19 @@
 {{ define "main" }}
-  {{/* 新しいクラス home-intro-container で囲む */}}
-  <div class="home-intro-container">
-    <article class="prose">
+  {{/* 新しいクラス home-intro-container で囲む。`.Content` が空の場合は本文ブロックを省略してタイトル直下にアルバムを出す */}}
+  {{ if .Content }}
+    <div class="home-intro-container">
+      <article class="prose">
+        {{ partial "title.html" . }}
+        <div class="entry-content">
+          {{ .Content }}
+        </div>
+      </article>
+    </div>
+  {{ else }}
+    <div class="home-intro-container no-body">
       {{ partial "title.html" . }}
-      <div class="entry-content">
-        {{ .Content }}
-      </div>
-    </article>
-  </div>
+    </div>
+  {{ end }}
 
   {{ partial "featured.html" . }}
 

@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center; /* 横方向の中央揃え */
   text-align: center;  /* テキストの中央揃え */
-  margin: 0 auto 3rem;
+  margin: 0 auto 0.8rem;
   max-width: 800px;    /* 読みやすい幅に制限 */
 }
 
@@ -27,4 +27,29 @@
 .home-intro-container .prose ul {
   text-align: left;
   display: inline-table; /* 中央に配置しつつ中身は左寄せ */
+}
+
+/* --- レイアウト調整: トップタイトルと最初のアルバム間の余白を小さくする --- */
+.home-intro-container {
+  margin: 0 auto 1.25rem; /* デフォルト 3rem -> 1.25rem に縮める */
+}
+
+/* アルバムカード内のタイトルと写真数の間隔を小さくする */
+.card > div {
+  gap: 0.25rem; /* デフォルト 0.75rem -> 0.25rem */
+  padding: 0.75rem; /* 少し詰める */
+}
+.card > div > h2 {
+  margin: 0; /* タイトル下の余白を排除 */
+  line-height: 1.25;
+}
+.card > div > p {
+  margin: 0; /* p の上マージンをなくす */
+  color: var(--text-2);
+  font-size: 0.875rem;
+}
+
+/* セクション全体の行間も必要に応じて詰める */
+section.galleries {
+  gap: 1.25rem 1rem; /* デフォルト 2rem 1.5rem をやや縮小 */
 }
