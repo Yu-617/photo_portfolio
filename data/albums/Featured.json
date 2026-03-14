@@ -4,62 +4,62 @@
   },
   "feature_spring.JPG": {
     "weight": 100,
-    "comment": null
+    "comment": "Spring"
   },
   "summer.JPG": {
     "weight": 200,
-    "comment": null
+    "comment": "Summer"
   },
   "autumn.JPG": {
     "weight": 300,
-    "comment": null
+    "comment": "Autumn"
   },
   "winter.JPG": {
     "weight": 400,
-    "comment": null
+    "comment": "Winter"
   },
   "sunrise.JPG": {
     "weight": 500,
-    "comment": null
+    "comment": "The First Sunrise of the Year"
   },
   "sunrise_flight.jpg": {
     "weight": 600,
-    "comment": null
+    "comment": "The Sunrise at Logan Airport"
   },
   "blueimpulse_one.JPG": {
     "weight": 700,
-    "comment": null
+    "comment": "Blue Impulse"
   },
   "sky_pink.jpg": {
     "weight": 800,
-    "comment": null
+    "comment": "Sky"
   },
   "sunset_film.JPG": {
     "weight": 900,
-    "comment": null
+    "comment": "Sunset"
   },
   "asakusa.JPG": {
     "weight": 1000,
-    "comment": null
+    "comment": "Asakusa"
   },
   "hands.JPG": {
     "weight": 1100,
-    "comment": null
+    "comment": "Concert"
   },
   "obsession.JPG": {
     "weight": 1200,
-    "comment": null
+    "comment": "ExWHYZ"
   },
   "maho_imagine_bw.JPG": {
     "weight": 1300,
-    "comment": null
+    "comment": "ExWHYZ / maho"
   },
   "maho_back.JPG": {
     "weight": 1400,
-    "comment": null
+    "comment": "ExWHYZ / maho"
   },
   "maho_kanadevia_red.JPG": {
     "weight": 1500,
-    "comment": null
+    "comment": "ExWHYZ / maho"
   }
 }
