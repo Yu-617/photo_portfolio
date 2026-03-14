@@ -1,4 +1,6 @@
 ---
 title: "Yu-617 Photography"
-description: ""
+social_description: "Photo Portfolio by Yu-617"
+images:
+  - "/images/autumn.JPG"
 ---
