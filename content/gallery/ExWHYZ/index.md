@@ -18,7 +18,8 @@ layout: "gallery"
 # [ExWHYZ](https://www.exwhyz.jp/)
 
 EMPiREを前身とする、日本の4人組グループ。WACK所属。\
-グループコンセプトは 'Dance your Dance'.
+グループコンセプトは 'Dance your Dance'.\
+読み方は「いくすわいず」、由来はカクテル 'XYZ'. 
 
 ダンスミュージックを軸としつつ、自由な音楽性を見せている。\
 メンバー自身が作詞に関わる他、

@@ -17,5 +17,9 @@
   "grass.JPG": {
     "weight": 400,
     "comment": null
+  },
+  "object.JPG": {
+    "weight": 500,
+    "comment": null
   }
 }
