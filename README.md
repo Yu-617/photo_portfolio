@@ -2,8 +2,6 @@
 
 ## 概要
 本リポジトリは写真ポートフォリオサイトです。
-
-サイトは以下よりアクセスできます。
 - **[https://Yu-617.github.io/photo_portfolio/](https://Yu-617.github.io/photo_portfolio/)**
 
 <img width="1413" height="889" alt="Screenshot 2026-03-14 at 2 44 17" src="https://github.com/user-attachments/assets/2a4769f0-28c3-4d8e-9a69-3edda85f4c86" />
