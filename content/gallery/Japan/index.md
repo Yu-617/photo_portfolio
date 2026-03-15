@@ -7,7 +7,7 @@ params:
   featured: false
   private: false
 resources:
-  - src: feature_yasaka.JPG
+  - src: feature_ray.JPG
     title: ""
     params:
       cover: true 

@@ -7,7 +7,7 @@ params:
   featured: false
   private: false
 resources:
-  - src: feature_blue.JPEG 
+  - src: feature_lapidary.JPG 
     title: ""
     params:
       cover: true 
