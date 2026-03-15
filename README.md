@@ -24,7 +24,7 @@
 	- アルバムに `index.md` (フォルダーなら `_index.md`) を置き、必要情報を記載してください。テンプレートは [`/templates/album_index.md`](https://github.com/Yu-617/photo_portfolio/blob/main/templates/album_index.md), [`/templates/parent__index.md`](https://github.com/Yu-617/photo_portfolio/blob/main/templates/parent__index.md) の通りです。
 
 2) コメント・表示順を編集する (optional)
-	- 各アルバムフォルダに `album.csv` を置くことで、各写真の表示順とコメント（キャプションに記載）を指定できます。
+	- 各アルバムフォルダに `album.csv` を置くことで、各写真の表示順とコメント（画像クリック時のキャプションに記載）を指定できます。
 	- テンプレートは [`/templates/album.csv`](https://github.com/Yu-617/photo_portfolio/blob/main/templates/album.csv) の通りです。
 	- 表示順とコメントを反映するには、 [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/csv_to_data.py) を実行し、JSONを生成する必要があります（後述）。
 
@@ -54,6 +54,13 @@ hugo server -D & sleep 1 && open http://localhost:1313/
 
 
 ### その他注意
-- ドライラン (`--dry-run`) することで、ツール実行前に挙動を確認できます。
-- バックアップ `*.bak` を元に戻す場合の例: `mv img.jpg.bak img.jpg`
+- ドライラン 
+  - 末尾に `--dry-run` をつけることで、ツール実行前に挙動を確認できます。
+- バックアップ
+  - defaultでバックアップ `*.bak` が生成されます
+  - `*.bak` を元に戻す場合の例: `mv img.jpg.bak img.jpg`
+  - `*.bak` を削除する場合
+  ```bash
+  find . -type f -path "./content/gallery/*" -name "*.bak" -print -delete
+  ```
 
