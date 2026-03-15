@@ -4,12 +4,19 @@
 本リポジトリは写真ポートフォリオサイトです。
 - **[https://Yu-617.github.io/photo_portfolio/](https://Yu-617.github.io/photo_portfolio/)**
 
-<img width="1413" height="889" alt="Screenshot 2026-03-14 at 2 44 17" src="https://github.com/user-attachments/assets/2a4769f0-28c3-4d8e-9a69-3edda85f4c86" />
-<img width="1661" height="874" alt="Screenshot 2026-03-14 at 2 44 31" src="https://github.com/user-attachments/assets/03a3c03c-10a4-4796-8c1e-1570d1aff702" />
-<img width="1675" height="886" alt="Screenshot 2026-03-14 at 2 44 53" src="https://github.com/user-attachments/assets/580836b2-7ec9-4544-aa64-a1d4fed2e618" />
-
-
 [Hugo](https://gohugo.io/) および、そのテーマのひとつ [hugo-theme-gallery](https://github.com/nicokaiser/hugo-theme-gallery) をベースにカスタマイズしています。
+
+PC
+
+<img width="1646" height="790" alt="Image" src="https://github.com/user-attachments/assets/62963ee2-94ac-4ab9-972a-f5bc27d4389b" />
+<img width="1641" height="881" alt="Image" src="https://github.com/user-attachments/assets/335fbff8-6f9e-40dc-a650-24ee2bcf9346" />
+<img width="1650" height="878" alt="Image" src="https://github.com/user-attachments/assets/5fbac33f-842a-4531-adcb-399d82663dde" />
+
+Mobile
+
+<img width="364" height="655" alt="Image" src="https://github.com/user-attachments/assets/056ee1ed-5044-4445-8a67-c97b2300fada" />
+
+
 
 ## 運用方法
 
