@@ -13,14 +13,23 @@
     {{ $images := slice }}
     {{ $withWeight := slice }}
     {{ $withoutWeight := slice }}
+    {{ $endWeight := slice }}
     {{ range $image := where (.Resources.ByType "image") "Params.hidden" "ne" true }}
       {{ $entry := dict }}
       {{ if $meta }}
         {{ $entry = index $meta $image.Name }}
       {{ end }}
       {{ $weight := -1 }}
+      {{ $isEnd := false }}
       {{ with $entry }}
-        {{ with .weight }}{{ $weight = . }}{{ end }}
+        {{ with .weight }}
+          {{/* If weight is the literal string "end", mark for end-group; otherwise treat as numeric weight (leave as-is) */}}
+          {{ if eq (printf "%v" .) "end" }}
+            {{ $isEnd = true }}
+          {{ else }}
+            {{ $weight = . }}
+          {{ end }}
+        {{ end }}
       {{ end }}
       {{ $date := time "1970-01-01T00:00:00Z" }}
       {{/* Priority: explicit Params.Date > EXIF Create/Original date > EXIF .Date > resource ModTime > epoch */}}
@@ -47,6 +56,8 @@
       {{ $item := dict "Name" $image.Name "Weight" $weight "Date" $date "image" $image "Params" $image.Params "Title" $image.Title }}
       {{ if ge $weight 0 }}
         {{ $withWeight = $withWeight | append $item }}
+      {{ else if $isEnd }}
+        {{ $endWeight = $endWeight | append $item }}
       {{ else }}
         {{ $withoutWeight = $withoutWeight | append $item }}
       {{ end }}
@@ -62,11 +73,16 @@
     {{ end }}
     {{ if ne $albumOrder "asc" }}
       {{ $withoutWeight = sort $withoutWeight "Date" "desc" }}
+      {{ $endWeight = sort $endWeight "Date" "desc" }}
     {{ else }}
       {{ $withoutWeight = sort $withoutWeight "Date" "asc" }}
+      {{ $endWeight = sort $endWeight "Date" "asc" }}
     {{ end }}
-    {{/* concatenate: weights first, then the rest */}}
+    {{/* concatenate: weights first, then the regular ones, then the 'end' ones */}}
     {{ range $i := $withoutWeight }}
+      {{ $withWeight = $withWeight | append $i }}
+    {{ end }}
+    {{ range $i := $endWeight }}
       {{ $withWeight = $withWeight | append $i }}
     {{ end }}
     {{ $images = $withWeight }}

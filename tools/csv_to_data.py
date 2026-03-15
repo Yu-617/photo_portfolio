@@ -34,11 +34,15 @@ for dirpath, dirs, files in os.walk(CONTENT_GALLERY):
                     mapping[fname] = meta
                     continue
 
-                weight = row.get('weight', '').strip()
-                try:
-                    weight = int(weight) if weight != '' else None
-                except:
+                weight_raw = (row.get('weight', '') or '').strip()
+                if weight_raw == '':
                     weight = None
+                else:
+                    try:
+                        weight = int(weight_raw)
+                    except:
+                        # preserve non-numeric weight (e.g. 'end') as string
+                        weight = weight_raw
                 comment = row.get('comment', '').strip() or None
                 mapping[fname] = {'weight': weight, 'comment': comment}
         out = OUT_DIR / f'{slug}.json'
