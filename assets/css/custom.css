@@ -115,7 +115,7 @@ section.galleries {
    -> Only apply to the Members section (h2#members + ul) to avoid global effect */
 .prose h2#members + ul li strong:first-child {
   display: inline-block;
-  width: 60px; /* narrowed per request */
+  width: 80px; /* narrowed per request */
   text-align: left;
   margin-right: 0.5rem;
 }
@@ -131,34 +131,3 @@ section.galleries {
 .member-name--narrow{ width:64px; }
 .member-name--wide{ width:110px; }
 .member-links{ display:inline; }
-
-/* Reduce top header space and hide empty header anchor text effect */
-body > header {
-  margin-bottom: 0.25rem; /* tighten spacing */
-  min-height: 2.5rem;
-  padding: 0.25rem 0.25rem; /* reduce vertical padding */
-}
-
-body > header .btn[aria-label] {
-  /* keep accessible home link but visually compact */
-  display: inline-block;
-  width: 3rem;
-  height: 3rem;
-  padding: 0;
-  text-indent: -9999px; /* ensure no visible text if any */
-  overflow: hidden;
-}
-
-/* Reduce space between header and page title */
-.home-intro-container {
-  margin: 0 auto 0.5rem; /* previously 1.25rem */
-}
-
-/* Reduce hgroup gap/margin for tighter layout */
-hgroup {
-  gap: 0.75rem;
-  margin: 0 auto 1rem;
-}
-
-/* Slightly lift main content if needed */
-body > main { padding-top: 0; }
