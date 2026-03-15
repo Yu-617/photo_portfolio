@@ -131,3 +131,67 @@ section.galleries {
 .member-name--narrow{ width:64px; }
 .member-name--wide{ width:110px; }
 .member-links{ display:inline; }
+
+/* --- ホームのタイトル周辺の余白をさらに詰める --- */
+.home-intro-container hgroup {
+  gap: 0.5rem;           /* hgroup 内の要素間を狭く */
+  margin-top: 0.2rem;    /* ページ上端との距離を縮める */
+  margin-bottom: 0.6rem; /* タイトル下の余白を小さく */
+  padding-left: 1rem;    /* 横パディングを少し残す */
+  padding-right: 1rem;
+}
+
+.home-intro-container .prose h1 {
+  margin-top: 0.2rem;    /* 小画面でもタイトル上の余白を縮める */
+  margin-bottom: 0.4rem; /* タイトル下の余白を縮める */
+}
+
+/* さらに詰めたい場合は数値を調整してください */
+
+/* --- ヘッダーの上下幅を小さくする（全ページ） --- */
+body > header {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important; /* さらに詰める */
+  min-height: 2rem !important;
+}
+
+body > header .btn {
+  height: 2rem !important; /* 元は 3rem */
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+  font-size: 0.95rem !important;
+}
+
+body > header .btn-square {
+  width: 2rem !important;
+  height: 2rem !important;
+  padding: 0 !important;
+}
+
+body > header .icon-menu,
+body > header .icon-close {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+@media (min-width: 640px) {
+  body > header {
+    margin-bottom: 0 !important; /* デスクトップでも詰める */
+  }
+}
+
+/* ホームのタイトル上の余白を完全に詰める */
+.home-intro-container {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.home-intro-container hgroup {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.home-intro-container .prose h1 {
+  margin-top: 0 !important;
+}
