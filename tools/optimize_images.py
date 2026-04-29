@@ -23,6 +23,7 @@ import argparse
 import os
 from pathlib import Path
 import sys
+import io
 
 try:
     import piexif
@@ -76,36 +77,49 @@ def process_image(path: Path, max_width: int, max_height: int, quality: int, con
             else:
                 out_path = path
 
-            if backup and out_path.exists():
-                bak = out_path.with_suffix(out_path.suffix + '.bak')
-                if not bak.exists():
-                    out_path.replace(bak)
-
-            # WebP へ変換
+            # 保存内容を一旦メモリに書き、既存ファイルと比較して差分がある場合のみディスクに書き込む
             if convert_webp:
                 webp_path = out_path.with_suffix('.webp')
                 save_kwargs = {'quality': quality}
                 if exif_bytes:
                     save_kwargs['exif'] = exif_bytes
-                try:
-                    img.save(webp_path, 'WEBP', **save_kwargs)
-                except TypeError:
-                    img.save(webp_path, 'WEBP', quality=quality)
 
+                buf = io.BytesIO()
+                try:
+                    img.save(buf, 'WEBP', **save_kwargs)
+                except TypeError:
+                    buf = io.BytesIO()
+                    img.save(buf, 'WEBP', quality=quality)
+                new_bytes = buf.getvalue()
+
+                if webp_path.exists():
+                    if webp_path.read_bytes() == new_bytes:
+                        print(f"SKIP (unchanged): {webp_path}")
+                        # 元ファイルがある場合、変換で元を削除する処理は差分があるときのみ行う
+                        return True
+
+                # 差分がある場合のみバックアップと書き込み
                 if not output_dir and path.exists() and webp_path.exists():
                     try:
                         path.unlink()
                     except Exception:
                         pass
+
+                # 書き込み（原子書き換えにしても良いが簡潔に）
+                with open(webp_path, 'wb') as f:
+                    f.write(new_bytes)
                 print(f"WROTE: {webp_path}")
                 return True
 
             fmt = original_format.upper() if original_format else None
+
+            # JPEG / PNG などはまずバッファに保存して差分判定
+            buf = io.BytesIO()
             if fmt in ('JPEG', 'JPG'):
                 save_kwargs = {'quality': quality, 'optimize': True, 'progressive': True}
                 if exif_bytes:
                     save_kwargs['exif'] = exif_bytes
-                img.save(out_path, 'JPEG', **save_kwargs)
+                img.save(buf, 'JPEG', **save_kwargs)
             elif fmt == 'PNG':
                 pnginfo = None
                 if isinstance(img.info, dict) and img.info:
@@ -114,11 +128,31 @@ def process_image(path: Path, max_width: int, max_height: int, quality: int, con
                         if isinstance(v, str):
                             pnginfo.add_text(k, v)
                 if pnginfo:
-                    img.save(out_path, 'PNG', optimize=True, pnginfo=pnginfo)
+                    img.save(buf, 'PNG', optimize=True, pnginfo=pnginfo)
                 else:
-                    img.save(out_path, 'PNG', optimize=True)
+                    img.save(buf, 'PNG', optimize=True)
             else:
-                img.save(out_path)
+                img.save(buf)
+
+            new_bytes = buf.getvalue()
+
+            if out_path.exists():
+                try:
+                    if out_path.read_bytes() == new_bytes:
+                        print(f"SKIP (unchanged): {out_path}")
+                        return True
+                except Exception:
+                    pass
+
+            # 差分がある場合のみバックアップを作成して書き込み
+            if backup and out_path.exists():
+                bak = out_path.with_suffix(out_path.suffix + '.bak')
+                if not bak.exists():
+                    out_path.replace(bak)
+
+            # 実際に書き込む
+            with open(out_path, 'wb') as f:
+                f.write(new_bytes)
 
             print(f"WROTE: {out_path}")
             return True
