@@ -26,6 +26,14 @@
     "weight": 600,
     "comment": null
   },
+  "tower.JPG": {
+    "weight": 610,
+    "comment": null
+  },
+  "koinobori.JPG": {
+    "weight": 620,
+    "comment": null
+  },
   "windmill_sky.JPG": {
     "weight": 700,
     "comment": null
@@ -34,8 +42,8 @@
     "weight": 800,
     "comment": null
   },
-  "yoyogi.JPG": {
-    "weight": 900,
+  "bird.JPG": {
+    "weight": 810,
     "comment": null
   }
 }
