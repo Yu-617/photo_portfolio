@@ -21,5 +21,9 @@
   "object.JPG": {
     "weight": 500,
     "comment": null
+  },
+  "gate.jpg": {
+    "weight": 600,
+    "comment": null
   }
 }
