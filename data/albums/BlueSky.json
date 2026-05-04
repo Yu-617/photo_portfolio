@@ -45,5 +45,13 @@
   "bird.JPG": {
     "weight": 810,
     "comment": null
+  },
+  "construction.jpg": {
+    "weight": 1000,
+    "comment": null
+  },
+  "cross.jpg": {
+    "weight": 1100,
+    "comment": null
   }
 }
