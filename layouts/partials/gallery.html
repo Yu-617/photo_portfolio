@@ -91,6 +91,8 @@
     {{ range $it := $images }}
       {{ $image := $it.image }}
       {{ $thumbnail := $image.Filter (slice images.AutoOrient (images.Process "fit 600x600")) }}
+      {{ $thumbnail2 := $image.Filter (slice images.AutoOrient (images.Process "fit 1200x1200")) }}
+      {{ $thumbnail3 := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
       {{ $full := $image.Filter (slice images.AutoOrient (images.Process "fit 1600x1600")) }}
       {{/* Colors 呼び出しで処理が失敗する環境があるため、暫定的に既定色を使用する */}}
       {{ $color := "transparent" }}
@@ -104,7 +106,11 @@
          itemscope itemtype="https://schema.org/ImageObject"
          style="aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
         <figure style="background-color: {{ $color }}; aspect-ratio: {{ $thumbnail.Width }} / {{ $thumbnail.Height }}">
-          <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" data-src="{{ $thumbnail.RelPermalink }}" alt="{{ $image.Title }}" />
+          <img class="lazyload" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}"
+            data-src="{{ $thumbnail.RelPermalink }}"
+               data-srcset="{{ $thumbnail.RelPermalink }} {{ $thumbnail.Width }}w, {{ $thumbnail2.RelPermalink }} {{ $thumbnail2.Width }}w, {{ $thumbnail3.RelPermalink }} {{ $thumbnail3.Width }}w"
+               data-sizes="(max-width:600px) 90vw, 30vw"
+            alt="{{ $image.Title }}" />
         </figure>
         <meta itemprop="contentUrl" content="{{ $full.RelPermalink }}" />
         
