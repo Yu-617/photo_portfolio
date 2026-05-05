@@ -2,7 +2,7 @@
 title: "Life"
 date:
 description: ""
-weight: 200
+weight: 300
 params:
   featured: false
   private: false

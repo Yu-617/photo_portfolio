@@ -68,6 +68,7 @@ def main():
 
 	# 3) optimize_images.py
 	opt_script = tools_dir / 'optimize_images.py'
+	"""
 	if opt_script.exists():
 		cmd = [sys.executable, str(opt_script), 'content/gallery']
 		# process subdirectories (child albums)
@@ -82,6 +83,8 @@ def main():
 			failures.append(('optimize_images.py', rc))
 	else:
 		print('Skipping optimize_images.py (not found)')
+	"""
+	print('Skipping optimize_images.py (temporarily disabled)')
 
 	# 4) delete_gps.py
 	del_script = tools_dir / 'delete_gps.py'

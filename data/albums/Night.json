@@ -33,17 +33,5 @@
   "christmas.JPG": {
     "weight": 800,
     "comment": null
-  },
-  "gate.JPG": {
-    "weight": 900,
-    "comment": null
-  },
-  "phone.JPG": {
-    "weight": 1000,
-    "comment": null
-  },
-  ".JPG": {
-    "weight": 1100,
-    "comment": null
   }
 }

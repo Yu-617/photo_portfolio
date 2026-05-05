@@ -2,7 +2,7 @@
 title: "Night"
 date:
 description: ""
-weight: 600
+weight: 400
 params:
   featured: false
   private: false

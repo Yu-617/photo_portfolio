@@ -44,13 +44,18 @@ Mobile
 	2. [`/tools/exif_overwrite.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/exif_overwrite.py): EXIF上書き
 		- キャプションに記載される、画像のEXIFに格納されているレンズ情報等を、手動で指定した形に上書き変更します。
 		- 変更規則は [`/tools/exif_overwrite_config.json`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/exif_overwrite_config.json) で指定します。
-    3.  [`/tools/exif_overwrite.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/exif_overwrite.py): 画像の軽量化
+    3.  ~~[`/tools/optimize_images.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/optimize_images.py): 画像の軽量化~~ (一時的に `run_tool.py` において無効化中)
     4.  [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/csv_data.py): `album.csv` からのJSON生成
 
 4) ローカルでの確認
 ```bash
 hugo server -D & sleep 1 && open http://localhost:1313/
-```  
+```
+同じインターネット (wifi) を共有する別デバイスでも確認したい場合は
+```bash
+hugo server --bind 0.0.0.0 --baseURL http://[PC_IP_address] & sleep 1 && open http://localhost:1313      
+```
+の後に別デバイスで `http://[PC_IP_address]:1313` にアクセス
 
 5) デプロイ
 	- 問題がなければpushします。

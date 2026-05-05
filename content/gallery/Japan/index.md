@@ -2,7 +2,7 @@
 title: "Japan"
 date:
 description: ""
-weight: 300
+weight: 600
 params:
   featured: false
   private: false

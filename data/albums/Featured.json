@@ -2,7 +2,7 @@
   "__meta": {
     "date_order": "asc"
   },
-  "feature_spring.JPG": {
+  "spring.JPG": {
     "weight": 100,
     "comment": "Spring"
   },
@@ -26,11 +26,7 @@
     "weight": 600,
     "comment": "The Sunrise at Logan Airport"
   },
-  "blueimpulse_one.JPG": {
-    "weight": 700,
-    "comment": "Blue Impulse"
-  },
-  "oblique.jpg": {
+  "feature_oblique.jpg": {
     "weight": 750,
     "comment": "Construction"
   },
