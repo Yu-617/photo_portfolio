@@ -62,6 +62,25 @@ hugo server --bind 0.0.0.0 --baseURL http://[PC_IP_address] & sleep 1 && open ht
 	- 画像上書き時に生成されるバックアップファイル `*.bak` は `.gitignore` によりcommitされません。
 	- [`/.github/workflows/hugo.yml`](https://github.com/Yu-617/photo_portfolio/blob/main/.github/workflows/hugo.yml) により自動的にHugoサイトがビルドされます。
 
+### tag & release
+- tag
+   - tagの確認
+     ```bash
+     git tag -l
+     ```
+   - tagを打つ
+     ```bash
+     git tag -a v[version] -m "[comment]"  
+     ```
+   - push tag
+   	 ```bash
+     git push --tags
+     ```
+- release
+  - githubにアクセスし，code -> releaseを選択
+  - releaseに対応するtagを指定し，release
+
+
 
 ### その他注意
 - ドライラン 
