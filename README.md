@@ -50,7 +50,12 @@ Mobile
 4) ローカルでの確認
 ```bash
 hugo server -D & sleep 1 && open http://localhost:1313/
-```  
+```
+同じインターネット (wifi) を共有する別デバイスでも確認したい場合は
+```bash
+hugo server --bind 0.0.0.0 --baseURL http://[PC_IP_address] & sleep 1 && open http://localhost:1313      
+```
+の後に別デバイスで `http://[PC_IP_address]:1313` にアクセス
 
 5) デプロイ
 	- 問題がなければpushします。
