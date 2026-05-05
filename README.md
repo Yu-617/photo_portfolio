@@ -44,7 +44,7 @@ Mobile
 	2. [`/tools/exif_overwrite.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/exif_overwrite.py): EXIF上書き
 		- キャプションに記載される、画像のEXIFに格納されているレンズ情報等を、手動で指定した形に上書き変更します。
 		- 変更規則は [`/tools/exif_overwrite_config.json`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/exif_overwrite_config.json) で指定します。
-    3.  ~~[`/tools/optimize_images.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/optimize_images.py): 画像の軽量化~~ (一時的に `run_tool.py` において無効化中)
+    3.  ~~[`/tools/optimize_images.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/optimize_images.py): 画像の軽量化~~ (v1.3.0より `run_tool.py` において無効化中．個別ファイル呼び出しによる実行は可能)
     4.  [`/tools/csv_to_data.py`](https://github.com/Yu-617/photo_portfolio/blob/main/tools/csv_data.py): `album.csv` からのJSON生成
 
 4) ローカルでの確認
