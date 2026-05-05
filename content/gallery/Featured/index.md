@@ -7,7 +7,7 @@ params:
   featured: true
   private: false
 resources:
-  - src: feature_spring.JPG
+  - src: oblique.JPG
     title: ""
     params:
       cover: true 
