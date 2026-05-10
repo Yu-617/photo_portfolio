@@ -7,7 +7,7 @@ params:
   featured: false
   private: false
 resources:
-  - src: feature.JPG
+  - src: feature_leona.JPG
     title: ""
     params:
       cover: true 
