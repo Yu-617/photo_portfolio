@@ -1,13 +1,13 @@
 ---
-title: "Concert"
+title: "MAMESHiBA NO TAiGUN"
 date:
 description: ""
-weight: 800
+weight: 700
 params:
   featured: false
   private: false
 resources:
-  - src: feature_aina.JPG
+  - src: feature.JPG
     title: ""
     params:
       cover: true 
