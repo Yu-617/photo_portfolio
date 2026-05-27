@@ -4,19 +4,19 @@
   },
   "spring.JPG": {
     "weight": 100,
-    "comment": "Spring"
+    "comment": "春の調べ"
   },
   "summer.JPG": {
     "weight": 200,
-    "comment": "Summer"
+    "comment": "夏の空に"
   },
   "autumn.JPG": {
     "weight": 300,
-    "comment": "Autumn"
+    "comment": "秋の夕陽"
   },
-  "winter.JPG": {
+  "winter_light.JPG": {
     "weight": 400,
-    "comment": "Winter"
+    "comment": "冬の夜に"
   },
   "sunrise.JPG": {
     "weight": 500,

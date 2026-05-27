@@ -10,10 +10,6 @@
     "weight": 200,
     "comment": null
   },
-  "buildings.JPG": {
-    "weight": 300,
-    "comment": null
-  },
   "grass.JPG": {
     "weight": 400,
     "comment": null
@@ -22,8 +18,20 @@
     "weight": 500,
     "comment": null
   },
-  "gate.jpg": {
+  "flare.JPG": {
     "weight": 600,
+    "comment": null
+  },
+  "circle.JPG": {
+    "weight": 700,
+    "comment": null
+  },
+  "buildings.JPG": {
+    "weight": 800,
+    "comment": null
+  },
+  "gate.jpg": {
+    "weight": 900,
     "comment": null
   }
 }
