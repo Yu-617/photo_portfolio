@@ -1,9 +1,9 @@
 filename,weight,comment,date_order
 __meta,,,asc
-spring.JPG,100,Spring,
-summer.JPG,200,Summer,
-autumn.JPG,300,Autumn,
-winter.JPG,400,Winter,
+spring.JPG,100,春の調べ,
+summer.JPG,200,夏の空に,
+autumn.JPG,300,秋の夕陽,
+winter_light.JPG,400,冬の夜に,
 sunrise.JPG,500,The First Sunrise of the Year,
 sunrise_flight.jpg,600,"The Sunrise at Logan Airport",
 feature_oblique.jpg,750,Construction,
