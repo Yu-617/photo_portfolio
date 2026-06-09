@@ -10,6 +10,10 @@
     "weight": 200,
     "comment": null
   },
+  "yamagata.jpg": {
+    "weight": 250,
+    "comment": null
+  },
   "branch.JPG": {
     "weight": 300,
     "comment": null
@@ -24,6 +28,10 @@
   },
   "yasaka.JPG": {
     "weight": 600,
+    "comment": null
+  },
+  "fireworks.JPG": {
+    "weight": 700,
     "comment": null
   }
 }
