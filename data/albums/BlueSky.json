@@ -26,16 +26,12 @@
     "weight": 610,
     "comment": null
   },
-  "koinobori.JPG": {
-    "weight": 620,
-    "comment": null
-  },
   "windmill_sky.JPG": {
     "weight": 700,
     "comment": null
   },
-  "windmill_sea.JPG": {
-    "weight": 800,
+  "clouds.jpg": {
+    "weight": 750,
     "comment": null
   },
   "bird.JPG": {
@@ -52,6 +48,10 @@
   },
   "cross.jpg": {
     "weight": 1100,
+    "comment": null
+  },
+  "JAL.jpg": {
+    "weight": 1200,
     "comment": null
   }
 }

@@ -30,6 +30,10 @@
     "weight": 750,
     "comment": "Construction"
   },
+  "okinawa_sea.JPG": {
+    "weight": 770,
+    "comment": "Sea"
+  },
   "sky_pink.jpg": {
     "weight": 800,
     "comment": "Sky"
@@ -45,6 +49,10 @@
   "hands.JPG": {
     "weight": 1100,
     "comment": "Concert"
+  },
+  "sweet_and_sour.jpg": {
+    "weight": 1150,
+    "comment": "ExWHYZ"
   },
   "obsession.JPG": {
     "weight": 1200,
