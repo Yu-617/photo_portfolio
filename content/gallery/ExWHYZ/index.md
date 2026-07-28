@@ -35,7 +35,7 @@ midoriko, nowの脱退を経て、2025年にはLINE CUBE SHIBUYAでのホール�
 12月にはKanadevia Hallにて、cross-dominanceを迎えてのバンドセット公演を開催。
 
 2026年2月にはイギリスでのワンマンツアーを行い、
-5月からはラストツアー ['Dance Your Dance'](https://www.exwhyz.jp/news/detail/69149) を行っている。
+5月から7月までにラストツアー ['Dance Your Dance'](https://www.exwhyz.jp/news/detail/69149) を行った。
 8月26日にラストアルバム ['zION'](https://www.exwhyz.jp/news/detail/77919) をリリースする。
 
 
@@ -61,13 +61,15 @@ midoriko, nowの脱退を経て、2025年にはLINE CUBE SHIBUYAでのホール�
   - [FIRST TOUR 'xYZ' (1st Album全曲ライブ映像)](https://youtu.be/88YrmcI2EAI?si=IfbWosm01V2ZyAxq)
   - [TOUR 2023 'xANADU' (2nd Album全曲ライブ with アユニ・D)](https://youtu.be/uII4SNDrbdM?si=CJFb5fEa2OjimrY1)
   - [BiSHWHYZ (BiSHとの対バンライブ)](https://youtu.be/ayjTOz_sZ6Q?si=WLDUjM3Qixv1YSry)
-  - [**TOUR 2023 'eLATION' part.2 (yahyelとの対バンライブ)**](https://youtu.be/GDAqR-E4s2g?si=NU_LW2DanESWyXB9)
+  - [TOUR 2023 'eLATION' part.2 (yahyelとの対バンライブ)](https://youtu.be/GDAqR-E4s2g?si=NU_LW2DanESWyXB9)
   - [**TOUR 2024 'HOPE' (現体制初のツアー)**](https://youtu.be/0Beo6fo9HXY?si=G74cm2Aqa78M6Jyo)
+  - [‘CLUB Ex Vol.1' (オールナイトイベント)](https://youtu.be/ROK2earcVzU?si=bVciw4on8icNaqxL)
+  - [**‘Our Step→Future’ (3周年ホールライブ)**](https://youtu.be/SQrfe7AEkmQ?si=qWebH9gMcWWLtiBw)
 
 - 楽曲{{<br>}}Playlist ([Apple](https://music.apple.com/jp/playlist/exwhyz-yu-617-songs/pl.u-zPyLWmXuZqAVzJW?l=en), [Spotify](https://open.spotify.com/playlist/1yIiwoh9ALqN8aTtFOtdCg?si=4SUkOc-KSU-QmX7tJ74rtg&pi=WYjwEKFFS92tH))
   - **GIVE YOU MY WORD** ([**MV**](https://youtu.be/TYo84fK_gJk?si=QLXn9AlKubAf-GUW), [Apple](https://music.apple.com/jp/song/give-you-my-word/1884344727), [Spotify](https://open.spotify.com/intl-ja/track/4pkL7S0WeFsHlG3tHAj9ol?si=d3e1f07829ff4a8e))
   - **ドラマ** ([**ライブ**](https://youtu.be/q15ww9C1gF4?si=IDxYZK5-CkqhzdWQ), [Apple](https://music.apple.com/jp/album/%E3%83%89%E3%83%A9%E3%83%9E/1758000620?i=1758000621), [Spotify](https://open.spotify.com/intl-ja/track/6KCaXUWEKLBuHYmSVc4sLF?si=632b0256bc7d4f37))
-  - **イマジン** ([**MV**](https://youtu.be/RDIkkYYcr08?si=bfghxLndnPgwO979), [Apple](https://music.apple.com/jp/album/%E3%82%A4%E3%83%9E%E3%82%B8%E3%83%B3/1825653916?i=1825654119), [Spotify](https://open.spotify.com/intl-ja/track/4TDcBIcqOzd45M4z6xZcGy?si=404e279b8a254d1f))
+  - **イマジン** ([**ライブ**](https://youtu.be/SQrfe7AEkmQ?si=gT1CnA8IrseVWCT7&t=65), [**MV**](https://youtu.be/RDIkkYYcr08?si=bfghxLndnPgwO979), [Apple](https://music.apple.com/jp/album/%E3%82%A4%E3%83%9E%E3%82%B8%E3%83%B3/1825653916?i=1825654119), [Spotify](https://open.spotify.com/intl-ja/track/4TDcBIcqOzd45M4z6xZcGy?si=404e279b8a254d1f))
   - **D.Y.D** ([**ライブ**](https://youtu.be/cMdzeP9Qwes?si=S7dmMg2wn9HJwYDb), [Apple](https://music.apple.com/jp/album/d-y-d/1671915008?i=1671915010), [Spotify](https://open.spotify.com/intl-ja/track/1xXzipAtatB7dB8vg9Bhr6?si=4dc60045aa264795))
   - **NOT SORRY** ([**ライブ**](https://youtu.be/aSeo9mFEIrc?si=r4UuTM_F77z-HbHw&t=421), [MV](https://youtu.be/AamSXTR61-s?si=lnhLmdBWKVmcPFKB), [Apple](https://music.apple.com/jp/album/not-sorry/1704795963?i=1704795969), [Spotify](https://open.spotify.com/intl-ja/track/1bm5RGDrUfvxM2l6sEtS78?si=c10903c0f2a44fce))
   - **Sweet & Sour** ([ライブ](https://youtu.be/0Beo6fo9HXY?si=_Cp5rbCQK0RRARIW&t=3473), [**MV**](https://youtu.be/vjgUugDP3Fw?si=Lgln5tepBjntio9A), [Apple](https://music.apple.com/jp/album/sweet-sour/1758000620?i=1758000635), [Spotify](https://open.spotify.com/intl-ja/track/7Ib4XxaDrR8btjxFXKFMiB?si=b73afc5e4a94447f))
