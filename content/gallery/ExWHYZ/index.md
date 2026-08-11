@@ -67,8 +67,11 @@ midoriko, nowの脱退を経て、2025年にはLINE CUBE SHIBUYAでのホール�
   - [**‘Our Step→Future’ (3周年ホールライブ)**](https://youtu.be/SQrfe7AEkmQ?si=qWebH9gMcWWLtiBw)
 
 - 楽曲{{<br>}}Playlist ([Apple](https://music.apple.com/jp/playlist/exwhyz-yu-617-songs/pl.u-zPyLWmXuZqAVzJW?l=en), [Spotify](https://open.spotify.com/playlist/1yIiwoh9ALqN8aTtFOtdCg?si=4SUkOc-KSU-QmX7tJ74rtg&pi=WYjwEKFFS92tH))
+  - **zION** ([Apple](https://music.apple.com/jp/song/zion/6795784529), [Spotify](https://open.spotify.com/intl-ja/track/75GPrjYvKMkhuYEJHBs43F?si=1b03089f37e342cc))
+  - **WHERE** ([Apple](https://music.apple.com/jp/song/where/6795784531), [Spotify](https://open.spotify.com/intl-ja/track/2GMq8nkshpjOpq8vNeCB0c?si=c4a8e1b04d6d4500))
   - **GIVE YOU MY WORD** ([**MV**](https://youtu.be/TYo84fK_gJk?si=QLXn9AlKubAf-GUW), [Apple](https://music.apple.com/jp/song/give-you-my-word/1884344727), [Spotify](https://open.spotify.com/intl-ja/track/4pkL7S0WeFsHlG3tHAj9ol?si=d3e1f07829ff4a8e))
   - **ドラマ** ([**ライブ**](https://youtu.be/q15ww9C1gF4?si=IDxYZK5-CkqhzdWQ), [Apple](https://music.apple.com/jp/album/%E3%83%89%E3%83%A9%E3%83%9E/1758000620?i=1758000621), [Spotify](https://open.spotify.com/intl-ja/track/6KCaXUWEKLBuHYmSVc4sLF?si=632b0256bc7d4f37))
+  - **FADED** ([**MV**](https://youtu.be/5yleMY2bASw?si=74uCZ2Bh1nMLYAhH), [Apple](https://music.apple.com/jp/song/faded/6795784549), [Spotify](https://open.spotify.com/intl-ja/track/3rKhh6sWLNW9C4AfEZwnOQ?si=fee96354bf1b495c))
   - **イマジン** ([**ライブ**](https://youtu.be/SQrfe7AEkmQ?si=gT1CnA8IrseVWCT7&t=65), [**MV**](https://youtu.be/RDIkkYYcr08?si=bfghxLndnPgwO979), [Apple](https://music.apple.com/jp/album/%E3%82%A4%E3%83%9E%E3%82%B8%E3%83%B3/1825653916?i=1825654119), [Spotify](https://open.spotify.com/intl-ja/track/4TDcBIcqOzd45M4z6xZcGy?si=404e279b8a254d1f))
   - **D.Y.D** ([**ライブ**](https://youtu.be/cMdzeP9Qwes?si=S7dmMg2wn9HJwYDb), [Apple](https://music.apple.com/jp/album/d-y-d/1671915008?i=1671915010), [Spotify](https://open.spotify.com/intl-ja/track/1xXzipAtatB7dB8vg9Bhr6?si=4dc60045aa264795))
   - **NOT SORRY** ([**ライブ**](https://youtu.be/aSeo9mFEIrc?si=r4UuTM_F77z-HbHw&t=421), [MV](https://youtu.be/AamSXTR61-s?si=lnhLmdBWKVmcPFKB), [Apple](https://music.apple.com/jp/album/not-sorry/1704795963?i=1704795969), [Spotify](https://open.spotify.com/intl-ja/track/1bm5RGDrUfvxM2l6sEtS78?si=c10903c0f2a44fce))
